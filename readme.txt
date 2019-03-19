@@ -11,4 +11,3 @@ Notes:
 I Didn't use es6 imports:
 - chrome gives a CORS error for local files. Didn't want to buden you running a webserver.
 
-

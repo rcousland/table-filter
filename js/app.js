@@ -29,11 +29,14 @@ const handler = {
   inputSkill: (input) => {
     currentSearchTerm = input
     task.searchAndUpdateTable(currentSearchTerm)
+  },
+  body: () => { // first function to run. <body onload="handler.body()">
+    task.loadPage()
   }
 }
 
 const task = {
-  loadPage: () => { // this is the first function to be called from html body tag
+  loadPage: () => {
     task.setInputDefault(userInputId, defultSkillFilter)
     const t = filteredTable
     table.create(t.parentId, t.tableId, t.headers, t.cssClass)
@@ -50,22 +53,18 @@ const task = {
   },
   filterCandidateBySkill: (newCandidates, skillToFilter, matchAllCharacters) => {
     const filterRegExp = new RegExp(skillToFilter, 'mi') // regexp that is case insensitive
-    return newCandidates
-      .filter(row => {
-        let rowMatch
-        row.skills.forEach(e => {
-          if (matchAllCharacters) {
-            e.match(filterRegExp) && skillToFilter.length === e.length ? rowMatch = true : false
-          }
-          else {
-            e.match(filterRegExp) ? rowMatch = true : false
-          }
-        })
-        return rowMatch
+    return newCandidates.filter(row => {
+      let rowMatch
+      row.skills.forEach(e => {
+        if (matchAllCharacters) {
+          e.match(filterRegExp) && skillToFilter.length === e.length ? rowMatch = true : false
+        }
+        else {
+          e.match(filterRegExp) ? rowMatch = true : false
+        }
       })
-  },
-  highlightSuccessfulTest: () => {
-    
+      return rowMatch
+    })
   }
 }
 
