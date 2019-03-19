@@ -72,22 +72,22 @@
               <div id="candidatesFilteredTableParent"></div>
               <br>
               <h6 class="is-3">Source Code <i>'/js/app.js'</i></h6>
-              <pre title="fff" class="line-numbers" data-output="2,5-50" data-start="51">
-<code class="language-javascript">task.filterCandidateBySkill: (newCandidates, skillToFilter, matchAllCharacters) => {
-  const filterRegExp = new RegExp(skillToFilter, 'mi') // regexp that is case insensitive
-  return newCandidates.filter(row => {
-    let rowMatch
-    row.skills.forEach(e => {
-      if (matchAllCharacters) {
-        e.match(filterRegExp) && skillToFilter.length === e.length ? rowMatch = true : false
-      }
-      else {
-        e.match(filterRegExp) ? rowMatch = true : false
-      }
+              <pre title="fff" class="line-numbers" data-output="2,5-50" data-start="54">
+<code class="language-javascript">  filterCandidateBySkill: (newCandidates, skillToFilter, matchAllCharacters) => {
+    const filterRegExp = new RegExp(skillToFilter, 'mi') // regexp that is case insensitive
+    return newCandidates.filter(row => {
+      let rowMatch
+      row.skills.forEach(e => {
+        if (matchAllCharacters) {
+          e.match(filterRegExp) && skillToFilter.length === e.length ? rowMatch = true : false
+        }
+        else {
+          e.match(filterRegExp) ? rowMatch = true : false
+        }
+      })
+      return rowMatch
     })
-    return rowMatch
-  })
-}</code></pre>
+  }</code></pre>
             </div>
             <div class="box">
               <h4 id="sample" class="title is-3">Demo Table Of Candidates (Not Filtered)</h4>
